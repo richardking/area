@@ -14,6 +14,7 @@ class Array
   #
   # Returns a String representation of the lat/lon pair.
   def to_region(options = {})
+    Rollbar.warning("[area_gem] calling Array#to_region")
     if self[0].is_a?(String) and self[1].is_a?(String)
       if row = Area.zip_codes.find {|row| row[3] == self[0].to_s and row[4] == self[1].to_s }
         if options[:city]
@@ -39,6 +40,7 @@ class Array
   #
   # Returns a String of converted places.
   def to_zip
+    Rollbar.warning("[area_gem] calling Array#to_zip")
     Area.zip_codes.find do |row|
       if row[3] and row[4]
         db_lat_len = row[3].split('.').length
@@ -63,6 +65,7 @@ class Array
   #
   # Returns a String representation of the GMT offset.
   def to_gmt_offset
+    Rollbar.warning("[area_gem] calling Array#to_gmt_offset")
     row = Area.zip_codes.find {|row| row[3] == self[0].to_s and row[4] == self[1].to_s }
     row[5] if row
   end
@@ -77,6 +80,7 @@ class Array
   #
   # Returns a String representation of daylight savings time observance.
   def to_dst
+    Rollbar.warning("[area_gem] calling Array#to_dst")
     row = Area.zip_codes.find {|row| row[3] == self[0].to_s and row[4] == self[1].to_s }
     row[6] if row
   end
@@ -90,6 +94,7 @@ class Array
   #
   # Returns a Boolean of the daylight savings time observance.
   def observes_dst?
+    Rollbar.warning("[area_gem] calling Array#observes_dst")
     to_dst == "1"
   end
 

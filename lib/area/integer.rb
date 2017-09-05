@@ -10,6 +10,7 @@ class Integer
   #
   # Returns a String representation of the converted area code.
   def to_region(options = {})
+    Rollbar.warning("[area_gem] calling Integer#to_region")
     if Area.code?(self) # presume an area code
       row = Area.area_codes.find{|row| row.first == self.to_s }
       row.last if row
@@ -26,6 +27,7 @@ class Integer
   #
   # Returns a String representation of the lat/lon pair.
   def to_latlon
+    Rollbar.warning("[area_gem] calling Integer#to_latlon")
     if Area.zip?(self)
       warn "[DEPRECATION] using `to_latlon` with an integer representation of a zipcode is deprecated and will be removed in future versions. Please use a string instead."
       row = Area.zip_codes.find {|row| row.first == self.to_s }
@@ -43,6 +45,7 @@ class Integer
   #
   # Returns a String representation of the latitude.
   def to_lat
+    Rollbar.warning("[area_gem] calling Integer#to_lat")
     if Area.zip?(self)
       warn "[DEPRECATION] using `to_lat` with an integer representation of a zipcode is deprecated and will be removed in future versions. Please use a string instead."
       row = Area.zip_codes.find {|row| row.first == self.to_s }
@@ -60,6 +63,7 @@ class Integer
   #
   # Returns a String representation of the longitude.
   def to_lon
+    Rollbar.warning("[area_gem] calling Integer#to_lon")
     if Area.zip?(self)
       warn "[DEPRECATION] using `to_lon` with an integer representaion of a zipcode is deprecated and will be removed in future versions. Please use a string instead."
       row = Area.zip_codes.find {|row| row.first == self.to_s }
@@ -77,6 +81,7 @@ class Integer
   #
   # Returns a String representation of the GMT offset.
   def to_gmt_offset
+    Rollbar.warning("[area_gem] calling Integer#to_gmt_offset")
     if Area.zip?(self)
       warn "[DEPRECATION] using `to_gmt` with an integer representaion of a zipcode is deprecated and will be removed in future versions. Please use a string instead."
       row = Area.zip_codes.find {|row| row.first == self.to_s }
@@ -94,6 +99,7 @@ class Integer
   #
   # Returns a String representation of of the daylight savings time observance.
   def to_dst
+    Rollbar.warning("[area_gem] calling Integer#to_dst")
     if Area.zip?(self)
       warn "[DEPRECATION] using `to_dst` with an integer representaion of a zipcode is deprecated and will be removed in future versions. Please use a string instead."
       row = Area.zip_codes.find {|row| row.first == self.to_s }
@@ -110,6 +116,7 @@ class Integer
   #
   # Returns a Boolean of the daylight savings time observance.
   def observes_dst?
+    Rollbar.warning("[area_gem] calling Integer#observes_dst?")
     to_dst == "1"
   end
 
